@@ -75,19 +75,23 @@ const Link = styled.a`
 `;
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [showTesseract, setShowTesseract] = useState(true);
   const [showGameOfLife, setShowGameOfLife] = useState(true);
   const [showThreeScene, setShowThreeScene] = useState(true);
   const [showPixiParticles, setShowPixiParticles] = useState(true);
 
   return (
-    <AppContainer>
+    <AppContainer isDarkMode={isDarkMode}>
       <Header>
         <Logo src={logo} alt="logo" />
         <h1>React Visualization Hub</h1>
       </Header>
 
       <ControlPanel>
+        <Button onClick={() => setIsDarkMode(!isDarkMode)}>
+          Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
+        </Button>
         <Button onClick={() => setShowTesseract(!showTesseract)}>
           Toggle Tesseract
         </Button>
