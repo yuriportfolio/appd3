@@ -6,19 +6,22 @@ import ThreeScene from './components/ThreeScene';
 import PixiParticles from './components/PixiParticles';
 import logo from './logo.svg';
 import './App.css';
+import MultiLayoutVisualizations from './components/MultiLayoutVisualizations';
+import PixiD3ForceGraph from './components/PixiD3ForceGraph';
 
 const AppContainer = styled.div`
   text-align: center;
-  background-color: ${props => props.isDarkMode ? '#282c34' : '#f0f0f0'};
+  background-color: ${props => props.$isDarkMode ? '#282c34' : '#f0f0f0'};
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: ${props => props.isDarkMode ? 'white' : 'black'};
+  color: ${props => props.$isDarkMode ? 'white' : 'black'};
   transition: all 0.3s ease;
 `;
+
 
 const Header = styled.header`
   display: flex;
@@ -80,14 +83,18 @@ function App() {
   const [showGameOfLife, setShowGameOfLife] = useState(true);
   const [showThreeScene, setShowThreeScene] = useState(true);
   const [showPixiParticles, setShowPixiParticles] = useState(true);
-
   return (
-    <AppContainer isDarkMode={isDarkMode}>
+    <AppContainer $isDarkMode={isDarkMode}>
       <Header>
         <Logo src={logo} alt="logo" />
         <h1>React Visualization Hub</h1>
       </Header>
-
+    <div className="App">
+      <MultiLayoutVisualizations />
+    </div>
+    <div className="App">
+      <PixiD3ForceGraph />
+    </div>
       <ControlPanel>
         <Button onClick={() => setIsDarkMode(!isDarkMode)}>
           Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
